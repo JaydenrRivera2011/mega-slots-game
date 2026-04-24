@@ -11,7 +11,7 @@ const firebaseConfig = {
   projectId: "mega-slots-game",
   storageBucket: "mega-slots-game.firebasestorage.app",
   messagingSenderId: "644763846920",
-  appId: "1:644763846920:web:69558de60c88eb443f04bd"
+  appId: "1:644763846920:web:1f3ca83b9d6b97843f04bd"
 };
 
 // Initialize Firebase
