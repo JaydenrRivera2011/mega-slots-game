@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lucky Spin — Free Slot Machine</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ===== ONBOARDING ===== -->
+<div id="onboarding" class="overlay">
+  <div class="card">
+    <h1>🎰 Lucky Spin</h1>
+    <p>Welcome! Let's set up your profile.</p>
+    <label>Username</label>
+    <input id="ob-username" maxlength="16" placeholder="CoolPlayer123"/>
+    <label>Favorite Color</label>
+    <input type="color" id="ob-color" value="#ffd700"/>
+    <label>Avatar</label>
+    <div id="ob-avatars" class="avatar-row"></div>
+    <button id="ob-start" class="btn primary">Start Playing</button>
+  </div>
+</div>
+
+<!-- ===== MAIN APP ===== -->
+<div id="app" class="hidden">
+
+  <header>
+    <div class="brand">🎰 Lucky Spin</div>
+    <div class="wallet">
+      <span class="coin">🪙 <b id="hud-coins">0</b></span>
+      <span class="gem">💎 <b id="hud-gems">0</b></span>
+      <span class="lvl">Lv <b id="hud-level">1</b> (<span id="hud-xp">0</span>/<span id="hud-xpneed">100</span>)</span>
+    </div>
+    <nav>
+      <button data-tab="game" class="tab active">Spin</button>
+      <button data-tab="store" class="tab">Store</button>
+      <button data-tab="achievements" class="tab">Achievements</button>
+      <button data-tab="challenges" class="tab">Daily</button>
+      <button data-tab="leaderboard" class="tab">Leaders</button>
+      <button data-tab="profile" class="tab">Profile</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- GAME TAB -->
+    <section id="tab-game" class="tab-panel active">
+      <div class="machine">
+        <div class="reels">
+          <div class="reel" id="reel-0">❓</div>
+          <div class="reel" id="reel-1">❓</div>
+          <div class="reel" id="reel-2">❓</div>
+        </div>
+        <div class="payline"></div>
+        <div class="result" id="result-msg">Place your bet & spin!</div>
+        <div class="bet-row">
+          <button id="bet-down" class="btn">-</button>
+          <div class="bet-display">Bet: <b id="bet-amount">10</b> 🪙</div>
+          <button id="bet-up" class="btn">+</button>
+          <button id="bet-max" class="btn">MAX</button>
+        </div>
+        <button id="spin-btn" class="btn spin">SPIN</button>
+        <button id="daily-btn" class="btn ghost">🎁 Claim Daily Reward</button>
+      </div>
+
+      <aside class="paytable">
+        <h3>Paytable</h3>
+        <div id="paytable-list"></div>
+        <p class="tiny">Single match pays base value. Pair pays 3×. Triple pays 10× × bet multiplier.</p>
+      </aside>
+    </section>
+
+    <!-- STORE TAB -->
+    <section id="tab-store" class="tab-panel">
+      <h2>Store</h2>
+      <div class="store-filters">
+        <button class="chip active" data-cat="all">All</button>
+        <button class="chip" data-cat="upgrade">Upgrades</button>
+        <button class="chip" data-cat="luck">Luck Boosters</button>
+        <button class="chip" data-cat="cosmetic">Cosmetics</button>
+        <button class="chip" data-cat="theme">Themes</button>
+        <button class="chip" data-cat="avatar">Avatars</button>
+        <button class="chip" data-cat="consumable">Consumables</button>
+      </div>
+      <div id="store-grid" class="grid"></div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="tab-achievements" class="tab-panel">
+      <h2>Achievements</h2>
+      <div id="ach-grid" class="grid"></div>
+    </section>
+
+    <!-- CHALLENGES -->
+    <section id="tab-challenges" class="tab-panel">
+      <h2>Daily Challenges</h2>
+      <p class="tiny">Resets every 24h. Complete for big rewards!</p>
+      <div id="ch-grid" class="grid"></div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section id="tab-leaderboard" class="tab-panel">
+      <h2>Global Leaderboard</h2>
+      <p class="tiny">Live — top players by total winnings. Updates every 30s.</p>
+      <button id="lb-refresh" class="btn">Refresh</button>
+      <table id="lb-table">
+        <thead><tr><th>#</th><th>Player</th><th>Level</th><th>Total Won</th><th>Biggest Win</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="tab-profile" class="tab-panel">
+      <h2>Profile</h2>
+      <div class="profile-card">
+        <div class="avatar-big" id="pf-avatar">🦊</div>
+        <label>Username</label>
+        <input id="pf-username" maxlength="16"/>
+        <label>Color</label>
+        <input id="pf-color" type="color"/>
+        <label>Avatar</label>
+        <div id="pf-avatars" class="avatar-row"></div>
+        <label>Active Theme</label>
+        <select id="pf-theme"></select>
+        <div class="stats">
+          <div>Total spins: <b id="pf-spins">0</b></div>
+          <div>Total won: <b id="pf-won">0</b> 🪙</div>
+          <div>Biggest win: <b id="pf-big">0</b> 🪙</div>
+          <div>Jackpots: <b id="pf-jp">0</b></div>
+        </div>
+        <button id="pf-save" class="btn primary">Save</button>
+        <button id="pf-reset" class="btn danger">Reset All Progress</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast-host"></div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
