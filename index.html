@@ -23,52 +23,100 @@
   </div>
 </div>
 
+<!-- ===== DAILY REWARDS POPUP ===== -->
+<div id="daily-popup" class="overlay hidden">
+  <div class="card daily-popup-card">
+    <h2>📅 Daily Rewards</h2>
+    <p class="tiny">Claim rewards every 24 hours!</p>
+    <div id="daily-rewards-grid" class="daily-rewards-grid"></div>
+    <div id="next-claim-timer" class="next-claim-timer"></div>
+    <button id="daily-popup-close" class="btn primary">Okay</button>
+  </div>
+</div>
+
 <!-- ===== MAIN APP ===== -->
 <div id="app" class="hidden">
 
-  <header>
-    <div class="brand">🎰 Lucky Spin</div>
-    <div class="wallet">
-      <span class="coin">🪙 <b id="hud-coins">0</b></span>
-      <span class="gem">💎 <b id="hud-gems">0</b></span>
-      <span class="lvl">Lv <b id="hud-level">1</b> (<span id="hud-xp">0</span>/<span id="hud-xpneed">100</span>)</span>
+  <!-- HAMBURGER MENU -->
+  <div id="menu-toggle" class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- SIDEBAR MENU -->
+  <nav id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2>🎰 Lucky Spin</h2>
+      <button id="menu-close" class="close-btn">✕</button>
     </div>
-    <nav>
-      <button data-tab="game" class="tab active">Spin</button>
-      <button data-tab="store" class="tab">Store</button>
-      <button data-tab="achievements" class="tab">Achievements</button>
-      <button data-tab="challenges" class="tab">Daily</button>
-      <button data-tab="leaderboard" class="tab">Leaders</button>
-      <button data-tab="profile" class="tab">Profile</button>
-    </nav>
+    <ul class="menu-list">
+      <li><a href="#" data-menu="game" class="menu-item active">🎮 Game</a></li>
+      <li><a href="#" data-menu="store" class="menu-item">🛒 Store</a></li>
+      <li><a href="#" data-menu="achievements" class="menu-item">🏆 Achievements</a></li>
+      <li><a href="#" data-menu="challenges" class="menu-item">🎯 Daily</a></li>
+      <li><a href="#" data-menu="leaderboard" class="menu-item">👑 Leaders</a></li>
+      <li><a href="#" data-menu="profile" class="menu-item">👤 Profile</a></li>
+      <li><a href="#" data-menu="updates" class="menu-item">📰 Updates</a></li>
+    </ul>
+  </nav>
+
+  <!-- OVERLAY FOR MOBILE MENU -->
+  <div id="menu-overlay" class="menu-overlay"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-content">
+      <div class="brand">🎰 Lucky Spin</div>
+      <div class="wallet">
+        <span class="coin">🪙 <b id="hud-coins">0</b></span>
+        <span class="gem">💎 <b id="hud-gems">0</b></span>
+        <span class="lvl">Lv <b id="hud-level">1</b></span>
+      </div>
+    </div>
   </header>
 
+  <!-- MAIN CONTENT -->
   <main>
+    
     <!-- GAME TAB -->
     <section id="tab-game" class="tab-panel active">
-      <div class="machine">
-        <div class="reels">
-          <div class="reel" id="reel-0">❓</div>
-          <div class="reel" id="reel-1">❓</div>
-          <div class="reel" id="reel-2">❓</div>
+      <div class="game-container">
+        <!-- MAIN SLOT MACHINE -->
+        <div class="machine">
+          <h2>SPIN TO WIN!</h2>
+          <div class="reels">
+            <div class="reel" id="reel-0">❓</div>
+            <div class="reel" id="reel-1">❓</div>
+            <div class="reel" id="reel-2">❓</div>
+          </div>
+          <div class="payline"></div>
+          <div class="result" id="result-msg">Place your bet & spin!</div>
+          <div class="bet-row">
+            <button id="bet-down" class="btn">−</button>
+            <div class="bet-display">Bet: <b id="bet-amount">10</b> 🪙</div>
+            <button id="bet-up" class="btn">+</button>
+            <button id="bet-max" class="btn">MAX</button>
+          </div>
+          <button id="spin-btn" class="btn spin">SPIN</button>
+          <button id="daily-btn" class="btn ghost">🎁 Claim Daily Reward</button>
         </div>
-        <div class="payline"></div>
-        <div class="result" id="result-msg">Place your bet & spin!</div>
-        <div class="bet-row">
-          <button id="bet-down" class="btn">-</button>
-          <div class="bet-display">Bet: <b id="bet-amount">10</b> 🪙</div>
-          <button id="bet-up" class="btn">+</button>
-          <button id="bet-max" class="btn">MAX</button>
-        </div>
-        <button id="spin-btn" class="btn spin">SPIN</button>
-        <button id="daily-btn" class="btn ghost">🎁 Claim Daily Reward</button>
-      </div>
 
-      <aside class="paytable">
-        <h3>Paytable</h3>
-        <div id="paytable-list"></div>
-        <p class="tiny">Single match pays base value. Pair pays 3×. Triple pays 10× × bet multiplier.</p>
-      </aside>
+        <!-- PAYTABLE -->
+        <aside class="paytable">
+          <h3>Paytable</h3>
+          <div id="paytable-list"></div>
+          <p class="tiny">Single match pays base value. Pair pays 3×. Triple pays 10× × bet multiplier.</p>
+        </aside>
+
+        <!-- DAILY SPIN AREA -->
+        <div class="daily-spin-card">
+          <h3>⭐ Daily Spin</h3>
+          <p class="tiny">Spin once per day for free!</p>
+          <button id="daily-spin-btn" class="btn primary">🎲 Daily Spin</button>
+          <div id="daily-spin-timer" class="timer"></div>
+        </div>
+      </div>
     </section>
 
     <!-- STORE TAB -->
@@ -86,20 +134,20 @@
       <div id="store-grid" class="grid"></div>
     </section>
 
-    <!-- ACHIEVEMENTS -->
+    <!-- ACHIEVEMENTS TAB -->
     <section id="tab-achievements" class="tab-panel">
       <h2>Achievements</h2>
       <div id="ach-grid" class="grid"></div>
     </section>
 
-    <!-- CHALLENGES -->
+    <!-- CHALLENGES TAB -->
     <section id="tab-challenges" class="tab-panel">
       <h2>Daily Challenges</h2>
       <p class="tiny">Resets every 24h. Complete for big rewards!</p>
       <div id="ch-grid" class="grid"></div>
     </section>
 
-    <!-- LEADERBOARD -->
+    <!-- LEADERBOARD TAB -->
     <section id="tab-leaderboard" class="tab-panel">
       <h2>Global Leaderboard</h2>
       <p class="tiny">Live — top players by total winnings. Updates every 30s.</p>
@@ -110,7 +158,7 @@
       </table>
     </section>
 
-    <!-- PROFILE -->
+    <!-- PROFILE TAB -->
     <section id="tab-profile" class="tab-panel">
       <h2>Profile</h2>
       <div class="profile-card">
@@ -133,6 +181,13 @@
         <button id="pf-reset" class="btn danger">Reset All Progress</button>
       </div>
     </section>
+
+    <!-- UPDATES TAB -->
+    <section id="tab-updates" class="tab-panel">
+      <h2>Updates & Announcements</h2>
+      <div id="updates-container" class="updates-container"></div>
+    </section>
+
   </main>
 
   <div id="toast-host"></div>
